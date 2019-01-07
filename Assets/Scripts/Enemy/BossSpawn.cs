@@ -22,7 +22,7 @@ public class BossSpawn : MonoBehaviour {
 				spawncontboss = 0;
 			if (bossspawned < limitBoss && spawncontboss >delayspawn) {
 				Instantiate (enemy, transform.position, transform.rotation);
-				enemy.rigidbody2D.AddForce(new Vector3(0,1,0) * Time.deltaTime * 0.5f);
+				enemy.GetComponent<Rigidbody2D>().AddForce(new Vector3(0,1,0) * Time.deltaTime * 0.5f);
 				bossspawned ++;
 				spawncontboss = 0;
 			}

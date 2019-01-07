@@ -46,43 +46,43 @@ public class EnemyIA : MonoBehaviour {
 			
 			//Lado 1 - UP / Lado 2 - DOWN / Lado 3 - RIGHT / Lado 4 - LEFT
 			if (diferenca.y > 0.01) {
-				rigidbody2D.AddForce(new Vector3(0,-1,0) * maxSpeed * Time.deltaTime * retardo);
+				GetComponent<Rigidbody2D>().AddForce(new Vector3(0,-1,0) * maxSpeed * Time.deltaTime * retardo);
 				anim.SetInteger ("Lado",1);
 			} else
 			if (diferenca.y < -0.01) {
-				rigidbody2D.AddForce(new Vector3(0,1,0) * maxSpeed * Time.deltaTime * retardo);
+				GetComponent<Rigidbody2D>().AddForce(new Vector3(0,1,0) * maxSpeed * Time.deltaTime * retardo);
 				anim.SetInteger ("Lado",2);
 			}
 			if (diferenca.x < -0.01) {
-				rigidbody2D.AddForce(new Vector3(1,0,0) * maxSpeed * Time.deltaTime * retardo);
+				GetComponent<Rigidbody2D>().AddForce(new Vector3(1,0,0) * maxSpeed * Time.deltaTime * retardo);
 			} else
 			if (diferenca.x > 0.01) {
-				rigidbody2D.AddForce(new Vector3(-1,0,0) * maxSpeed * Time.deltaTime * retardo);
+				GetComponent<Rigidbody2D>().AddForce(new Vector3(-1,0,0) * maxSpeed * Time.deltaTime * retardo);
 			} else {
 				transform.position += transform.right * 0;
 			}
 		}  else if (livre){
 			if (diferenca.y < -0.01) {
-				rigidbody2D.AddForce(new Vector3(0,1,0) * maxSpeed * Time.deltaTime * retardo);
+				GetComponent<Rigidbody2D>().AddForce(new Vector3(0,1,0) * maxSpeed * Time.deltaTime * retardo);
 			} else
 			if (diferenca.y > 0.01) {
-				rigidbody2D.AddForce(new Vector3(0,-1,0) * maxSpeed * Time.deltaTime * retardo);
+				GetComponent<Rigidbody2D>().AddForce(new Vector3(0,-1,0) * maxSpeed * Time.deltaTime * retardo);
 			} else {
 				transform.position += transform.up * 0;
 			}
 			if (diferenca.x < -0.01) {
-				rigidbody2D.AddForce(new Vector3(1,0,0) * maxSpeed * Time.deltaTime * retardo);
+				GetComponent<Rigidbody2D>().AddForce(new Vector3(1,0,0) * maxSpeed * Time.deltaTime * retardo);
 				anim.SetInteger ("Lado",3);
 			} else
 			if (diferenca.x > 0.01) {
-				rigidbody2D.AddForce(new Vector3(-1,0,0) * maxSpeed * Time.deltaTime * retardo);
+				GetComponent<Rigidbody2D>().AddForce(new Vector3(-1,0,0) * maxSpeed * Time.deltaTime * retardo);
 				anim.SetInteger ("Lado",4);
 			}
 		}
 	}
 	void OnTriggerStay2D ( Collider2D alerta)
 	{
-		if (alerta.collider2D.tag == "Player") {
+		if (alerta.GetComponent<Collider2D>().tag == "Player") {
 			anim.SetFloat ("Velocidade", 1);
 			passiva = false;
 			retardo = 0.3f;
@@ -91,7 +91,7 @@ public class EnemyIA : MonoBehaviour {
 	}
 	void OnTriggerExit2D (Collider2D alerta)
 	{
-		if (alerta.collider2D.tag == "Player") {
+		if (alerta.GetComponent<Collider2D>().tag == "Player") {
 			anim.SetFloat ("Velocidade", 0);
 			diferenca = FimAlerta;
 			passiva = true;

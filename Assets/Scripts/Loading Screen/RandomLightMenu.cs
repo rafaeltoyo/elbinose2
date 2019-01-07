@@ -12,7 +12,7 @@ public class RandomLightMenu : MonoBehaviour {
 		posx = 0;
 		posy = -1.96f;
 		introTime = 0;
-		light.intensity = 0;
+		GetComponent<Light>().intensity = 0;
 		part1 = true;
 		part2 = false;
 	}
@@ -28,20 +28,20 @@ public class RandomLightMenu : MonoBehaviour {
 		if (Mensagem.fimIntro == false) {
 						if (introTime < 3 && part1) {
 								introTime += Time.deltaTime;
-								light.intensity = introTime;
+								GetComponent<Light>().intensity = introTime;
 						} else {
 								part1 = false;
 								part2 = true;
 						}
 						if (introTime > 0.8f && part2) {
 								introTime -= Time.deltaTime * 3;
-								light.intensity = introTime;
+								GetComponent<Light>().intensity = introTime;
 						} else if (!part1) {
 								part2 = false;
 								Mensagem.fimIntro = true;
 						}
 				} else {
-						light.intensity = Random.Range (0.7f, 0.9f);
+						GetComponent<Light>().intensity = Random.Range (0.7f, 0.9f);
 				}
 	}
 	void FixedUpdate () {

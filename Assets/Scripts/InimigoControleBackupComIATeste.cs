@@ -26,14 +26,14 @@ public class InimigoControleBack : MonoBehaviour {
 	}
 	void OnTriggerStay2D ( Collider2D alerta)
 	{
-		if (alerta.isTrigger && alerta.collider2D.tag == "Player") {
+		if (alerta.isTrigger && alerta.GetComponent<Collider2D>().tag == "Player") {
 			diferenca = transform.position - player.position;
 						anim.SetFloat ("Velocidade", 1);
 				} 
 	}
 	void OnTriggerExit2D (Collider2D alerta)
 	{
-		if (alerta.isTrigger || alerta.collider2D.tag == "Player") {
+		if (alerta.isTrigger || alerta.GetComponent<Collider2D>().tag == "Player") {
 		anim.SetFloat ("Velocidade", 0);
 		diferenca = FimAlerta;
 		}

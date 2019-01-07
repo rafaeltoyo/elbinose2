@@ -52,7 +52,7 @@ public class EnemyBehaviour : CharacterBase {
 
 	}
 	void OnTriggerEnter2D ( Collider2D espada) {
-		if (espada.isTrigger && espada.collider2D.tag == "Sword" && currentHP > 0 && PlayerPrefs.GetInt ("inAtk") == 1) {
+		if (espada.isTrigger && espada.GetComponent<Collider2D>().tag == "Sword" && currentHP > 0 && PlayerPrefs.GetInt ("inAtk") == 1) {
 			int damage = (Mathf.CeilToInt(PlayerPrefs.GetFloat (PlayerStatsController.CurrentSave () + "ATK")) - basicStats.baseDefense);
 			if (damage < 1)
 				damage = 1;
@@ -60,16 +60,16 @@ public class EnemyBehaviour : CharacterBase {
 						currentHP = currentHP - damage;
 						AudioSource.PlayClipAtPoint (somEspada, transform.position);
 							if (diferenca.y > 0.1) {
-								rigidbody2D.AddForce(new Vector3(0,10,0) * Time.deltaTime );
+								GetComponent<Rigidbody2D>().AddForce(new Vector3(0,10,0) * Time.deltaTime );
 							} else
 							if (diferenca.y < -0.1) {
-								rigidbody2D.AddForce(new Vector3(0,-10,0) * Time.deltaTime );
+								GetComponent<Rigidbody2D>().AddForce(new Vector3(0,-10,0) * Time.deltaTime );
 							}
 							if (diferenca.x < -0.1) {
-								rigidbody2D.AddForce(new Vector3(-10,0,0) * Time.deltaTime );
+								GetComponent<Rigidbody2D>().AddForce(new Vector3(-10,0,0) * Time.deltaTime );
 							} else
 							if (diferenca.x > 0.1) {
-								rigidbody2D.AddForce(new Vector3(10,0,0) * Time.deltaTime );
+								GetComponent<Rigidbody2D>().AddForce(new Vector3(10,0,0) * Time.deltaTime );
 							}
 			PlayerPrefs.SetInt ("inAtk" , 0);
 				}
